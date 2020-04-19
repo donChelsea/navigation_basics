@@ -19,20 +19,23 @@ class TitleFragment : Fragment() {
                 inflater, R.layout.fragment_title, container, false)
 
         binding.playButton.setOnClickListener {
-            Navigation.createNavigateOnClickListener(R.id.action_titleFragment_to_gameFragment)
+            requireView().findNavController().navigate(R.id.action_titleFragment_to_gameFragment)
         }
 
+        // let android know the fragment has a menu
         setHasOptionsMenu(true)
 
         return binding.root
     }
 
+    // inflate overflow menu
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
 
         inflater.inflate(R.menu.overflow_menu, menu)
     }
 
+    // link navigation to overflow memu
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return NavigationUI.onNavDestinationSelected(item, requireView().findNavController()) || super.onOptionsItemSelected(item)
     }
